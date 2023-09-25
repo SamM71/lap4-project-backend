@@ -5,9 +5,6 @@ from flask import jsonify, request
 from application import db
 import logging
 
-# logging.basicConfig(filename='app.log', level=logging.ERROR)
-
-
 def index():
   try:
     users = User.query.all()

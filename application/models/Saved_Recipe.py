@@ -13,7 +13,7 @@ class Saved_Recipe(db.Model):
     self.recipe_id = recipe_id
 
   def __repr__(self):
-    return f"Saved_Recipe(id: {self.id}, user_id: {self.user_id}. recipe_id: {self.recipe_id})"
+    return f"Saved_Recipe(id: {self.id}, user_id: {self.user_id}, recipe_id: {self.recipe_id})"
   
   @property
   def json(self):

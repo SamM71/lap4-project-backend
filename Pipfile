@@ -12,8 +12,12 @@ psycopg2-binary = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-watch = "*"
+gunicorn = "*"
 
 [dev-packages]
+pytest = "*"
+pytest-cov = "*"
+pytest-watch = "*"
 
 [requires]
 python_version = "3.11"

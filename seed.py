@@ -15,8 +15,5 @@ entry5 = User(name="Hasan", email="hasan@example.com", username="hasan1", passwo
 entry6 = Recipe(user_id=1, name="recipe1", culture="culture1", description="example recipe", img_url="url")
 entry7 = Saved_Recipe(user_id=2, recipe_id=1)
 
-entry8 = User(name='Rubz', email='rubz@example.com', username='rubzz', password='jkl')
-
-db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7])
-db.session.add(entry8)
+db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6])
 db.session.commit()
