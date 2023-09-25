@@ -10,6 +10,7 @@ class Recipe(db.Model):
   culture = db.Column(db.String(100), nullable=False)
   description = db.Column(db.String(5000), nullable=False)
   img_url = db.Column(db.String(100))
+  saved_recipes = db.relationship('Saved_Recipe', backref='recipes', lazy=True)
 
   def __init__(self, user_id, name, culture, description, img_url):
     self.user_id = user_id
