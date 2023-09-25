@@ -3,3 +3,5 @@ __pycache__
 .env
 .vscode
 Pipfile.lock
+test_user.py
+.pytest_cache

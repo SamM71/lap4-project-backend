@@ -9,6 +9,9 @@ flask-cors = "*"
 flask-sqlalchemy = "*"
 flask = "*"
 psycopg2-binary = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-watch = "*"
 
 [dev-packages]
 
@@ -18,3 +21,5 @@ python_version = "3.11"
 [scripts]
 dev = "flask run"
 seed = "python seed.py"
+test = "ptw -- --capture=tee-sys"
+coverage = "pytest --cov-report term-missing --cov=."
