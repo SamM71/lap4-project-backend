@@ -1,8 +1,7 @@
 from flask import jsonify, request
 from werkzeug import exceptions
-from application import app, db
-from application.models import User
-from .controllers import index, show, create, update, delete, show_by_username
+from application import app
+from .controllers.user import index, show, create, update, delete, show_by_username
 
 @app.route("/")
 def hello_world():

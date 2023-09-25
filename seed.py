@@ -1,5 +1,5 @@
 from application import db
-from application.models import User
+from server.application.models.User import User
 
 db.drop_all()
 db.create_all()
