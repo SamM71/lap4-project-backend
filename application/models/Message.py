@@ -11,6 +11,11 @@ class Message(db.Model):
     # dialogue = db.relationship('Dialogue', backref='dialogues', lazy=True)
 
 
+@property
+def json(self):
+    return {"id": self.id, "username": self.username, "text": self.text}
+
+
 def __init__(self, username, text):
     self.username = username
     self.text = text
@@ -20,6 +25,4 @@ def __repr__(self):
     return f"Message(id: {self.id}, username: {self.username}, text: {self.text})"
 
 
-@property
-def json(self):
-    return {"id": self.id, "username": self.username, "text": self.text}  # remove password?
+ # remove password?
