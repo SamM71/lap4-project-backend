@@ -1,5 +1,5 @@
 import pytest, sys
-from . import User
+from ...models.User import User
 
 @pytest.fixture
 def user_test_data():

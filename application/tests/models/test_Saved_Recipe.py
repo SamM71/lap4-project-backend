@@ -1,5 +1,5 @@
 import pytest, sys
-from . import Saved_Recipe
+from ...models.Saved_Recipe import Saved_Recipe
 
 @pytest.fixture
 def saved_recipe_test_data():
