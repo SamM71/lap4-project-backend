@@ -17,6 +17,15 @@ def show(id):
     return jsonify({"user": user.json}), 200
   except:
     raise exceptions.NotFound("User not found.")
+  
+def show_by_username(username):
+  try:
+    print("hello")
+    user = User.query.filter_by(username=username).first()
+    return jsonify({"user": user.json}), 200
+  except:
+    raise exceptions.NotFound("User not found.")
+
 
 def create():
   try:

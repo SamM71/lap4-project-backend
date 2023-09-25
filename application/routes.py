@@ -2,7 +2,7 @@ from flask import jsonify, request
 from werkzeug import exceptions
 from application import app, db
 from application.models import User
-from .controllers import index, show, create, update, delete
+from .controllers import index, show, create, update, delete, show_by_username
 
 @app.route("/")
 def hello_world():
@@ -25,7 +25,12 @@ def handle_user(id):
     return update(id)
   if request.method == "DELETE":
     return delete(id)
-
+  
+@app.route("/users/<username>", methods=["GET"])
+def handle_user_by_username(username):
+  if request.method == "GET":
+    print("hi")
+    return show_by_username(username)
 
 @app.errorhandler(exceptions.NotFound)
 def handle_404(err):
