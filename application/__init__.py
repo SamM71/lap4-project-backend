@@ -13,3 +13,4 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
 
 db = SQLAlchemy(app)
+

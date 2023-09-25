@@ -1,5 +1,5 @@
 from application import db
-from server.application.models.User import User
+from application.models.User import User
 
 db.drop_all()
 db.create_all()
@@ -12,3 +12,4 @@ entry5 = User(name="Hasan", email="hasan@example.com", username="hasan1", passwo
 
 db.session.add_all([entry1, entry2, entry3, entry4, entry5])
 db.session.commit()
+
