@@ -5,12 +5,12 @@ from .. import db
 
 
 def index():
-    try:
-        messages = Message.query.all()
-        data = [m.json for m in messages]
-        print(data)
-        return jsonify({"messages": data})
-    except:
-        raise exceptions.NotFound("No messages found.")
+    messages = Message.query.all()
+    data = [m.json for m in messages]
+    print(messages)
+    return jsonify({"messages": data})
+
+
+
 
 

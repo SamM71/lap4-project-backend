@@ -13,19 +13,16 @@ class User(db.Model):
     recipes = db.relationship('Recipe', backref='users', lazy=True)
     saved_recipes = db.relationship('Saved_Recipe', backref='users', lazy=True)
 
+    def __init__(self, username, email, name, password):
+        self.username = username
+        self.email = email
+        self.name = name
+        self.password = password
 
-def __init__(self, username, email, name, password):
-    self.username = username
-    self.email = email
-    self.name = name
-    self.password = password
+    def __repr__(self):
+        return f"User(id: {self.id}, username: {self.username})"
 
-
-def __repr__(self):
-    return f"User(id: {self.id}, username: {self.username})"
-
-
-@property
-def json(self):
-    return {"id": self.id, "username": self.username, "email": self.email, "name": self.name,
-            "password": self.password}  # remove password?
+    @property
+    def json(self):
+        return {"id": self.id, "username": self.username, "email": self.email, "name": self.name,
+                "password": self.password}  # remove password?

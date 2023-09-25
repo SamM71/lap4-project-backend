@@ -10,18 +10,14 @@ class Dialogue(db.Model):
     receiver = db.Column(db.String(100), nullable=False)
     title = db.Column(db.String(100), nullable=False)
 
+    def __init__(self, username, receiver, title):
+        self.username = username
+        self.receiver = receiver
+        self.title = title
 
-def __init__(self, username, receiver, title):
-    self.username = username
-    self.receiver = receiver
-    self.title = title
+    def __repr__(self):
+        return f"Dialogue(id: {self.id}, username: {self.username}, receiver: {self.receiver})"
 
-
-def __repr__(self):
-    return f"Dialogue(id: {self.id}, username: {self.username}, receiver: {self.receiver})"
-
-
-@property
-def json(self):
-    return {"id": self.id, "username": self.username, "email": self.email, "name": self.name,
-            "password": self.password}  # remove password?
+    @property
+    def json(self):
+        return {"id": self.id, "username": self.username, "receiver": self.receiver, "title": self.title}

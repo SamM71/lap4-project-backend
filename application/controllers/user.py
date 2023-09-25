@@ -6,12 +6,13 @@ from application import db
 
 def index():
     print('working')
-    try:
-        users = User.query.all()
-        data = [u.json for u in users]
-        return jsonify({"users": data})
-    except:
-        raise exceptions.NotFound("No users found.")
+    # try:
+    users = User.query.all()
+    print(users)
+    data = [u.json for u in users]
+    return jsonify({"users": data})
+    # except:
+    #     raise exceptions.NotFound("No users found.")
 
 
 def show(id):
