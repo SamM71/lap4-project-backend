@@ -5,7 +5,7 @@ from ..controllers.user import index, show, create, update, delete, show_by_user
 user_bp = Blueprint('user_bp', __name__)
 
 
-@user_bp.route("/users", methods=["GET", "POST"])
+@app.route("/users", methods=["GET", "POST"])
 def handle_users():
     if request.method == "GET":
         return index()
