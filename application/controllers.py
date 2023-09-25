@@ -41,3 +41,12 @@ def update(id):
     return jsonify({"data": user.json})
   except:
     raise exceptions.BadRequest(f"Unable to update user with data provided.")
+  
+def delete(id):
+  try:
+    user = User.query.filter_by(id=id).first()
+    db.session.delete(user)
+    db.session.commit()
+    return f"User deleted"
+  except:
+    raise exceptions.InternalServerError(f"Unable to delete user.")
