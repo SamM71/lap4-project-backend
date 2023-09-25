@@ -9,6 +9,8 @@ flask-cors = "*"
 flask-sqlalchemy = "*"
 flask = "*"
 psycopg2-binary = "*"
+gunicorn = "*"
+
 
 [dev-packages]
 
