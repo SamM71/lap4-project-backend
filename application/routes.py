@@ -2,7 +2,7 @@ from flask import jsonify, request
 from werkzeug import exceptions
 from application import app, db
 from application.models import User
-from .controllers import index, show, create
+from .controllers import index, show, create, update
 
 @app.route("/")
 def hello_world():
@@ -21,6 +21,8 @@ def handle_users():
 def handle_user(id):
   if request.method == "GET":
     return show(id)
+  if request.method == "PATCH":
+    return update(id)
 
 
 @app.errorhandler(exceptions.NotFound)

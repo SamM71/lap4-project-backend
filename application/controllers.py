@@ -27,3 +27,17 @@ def create():
     return jsonify({"new_user": new_user.json}), 201
   except:
     raise exceptions.BadRequest(f"Unable to create new user with data provided.")
+  
+def update(id):
+  try:
+    data = request.json
+    user = User.query.filter_by(id=id).first()
+
+    for (attr, val) in data.items():
+      if hasattr(user, attr):
+        setattr(user, attr, val)
+
+    db.session.commit()
+    return jsonify({"data": user.json})
+  except:
+    raise exceptions.BadRequest(f"Unable to update user with data provided.")
