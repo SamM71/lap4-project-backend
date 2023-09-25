@@ -1,7 +1,7 @@
 from ..models.User import User
 from werkzeug import exceptions
 from flask import jsonify, request
-from .. import db
+from application import db
 
 def index():
   try:
