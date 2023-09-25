@@ -28,7 +28,6 @@ def handle_user(id):
 @app.route("/users/<username>", methods=["GET"])
 def handle_user_by_username(username):
   if request.method == "GET":
-    print("hi")
     return show_by_username(username)
 
 @app.errorhandler(exceptions.NotFound)
