@@ -20,7 +20,7 @@ def test_repr(user_test_data, capsys):
   assert "testuser" in out
   assert out == "User(id: 8, username: testuser)\n"
 
-def test_json_prop(user_test_data, capsys):
+def test_json_prop(user_test_data):
   data = user_test_data.json
   assert data["email"] == "test@example.com"
   assert data["name"] == "Test"
