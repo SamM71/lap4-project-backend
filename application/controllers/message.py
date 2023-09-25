@@ -9,7 +9,7 @@ def index():
         messages = Message.query.all()
         data = [m.json for m in messages]
         print(data)
-        return jsonify({"messages": messages})
+        return jsonify({"messages": data})
     except:
         raise exceptions.NotFound("No messages found.")
 

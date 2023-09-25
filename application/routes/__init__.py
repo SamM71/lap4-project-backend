@@ -3,9 +3,11 @@ from werkzeug import exceptions
 from application import app
 from .user import user_bp
 from .recipe import recipe_bp
+from .messageRoute import message_bp
 
 app.register_blueprint(user_bp)
 app.register_blueprint(recipe_bp)
+app.register_blueprint(message_bp)
 
 @app.route("/")
 def hello_world():

@@ -18,7 +18,8 @@ entry6 = Recipe(user_id=1, name="recipe1", culture="culture1", description="exam
 entry7 = Saved_Recipe(user_id=2, recipe_id=1)
 entry8 = Dialogue(username="Charlie", receiver="Sam", title="charlie-sam")
 entry9 = Message(username="Charlie", text="Hello, I am a message")
+entry10 = Message(username="Rubina", text="Hello")
 
-db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9])
+db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10])
 db.session.commit()
 
