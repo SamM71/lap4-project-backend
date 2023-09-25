@@ -1,7 +1,7 @@
 from ..models.User import User
 from werkzeug import exceptions
 from flask import jsonify, request
-from .. import db
+from application import db
 
 def index():
   try:
@@ -20,7 +20,6 @@ def show(id):
   
 def show_by_username(username):
   try:
-    print("hello")
     user = User.query.filter_by(username=username).first()
     return jsonify({"user": user.json}), 200
   except:
