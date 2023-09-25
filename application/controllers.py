@@ -9,11 +9,21 @@ def index():
     data = [u.json for u in users]
     return jsonify({"users": data})
   except:
-    raise exceptions.NotFound("No users found")
+    raise exceptions.NotFound("No users found.")
   
 def show(id):
   try:
     user = User.query.filter_by(id=id).first()
     return jsonify({"user": user.json}), 200
   except:
-    raise exceptions.NotFound("User not found")
+    raise exceptions.NotFound("User not found.")
+
+def create():
+  try:
+    username, email, name, password = request.json.values()
+    new_user = User(username, email, name, password)
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({"new_user": new_user.json}), 201
+  except:
+    raise exceptions.BadRequest(f"Unable to create new user with data provided.")

@@ -2,7 +2,7 @@ from flask import jsonify, request
 from werkzeug import exceptions
 from application import app, db
 from application.models import User
-from .controllers import index, show
+from .controllers import index, show, create
 
 @app.route("/")
 def hello_world():
@@ -14,6 +14,8 @@ def hello_world():
 def handle_users():
   if request.method == "GET":
     return index()
+  if request.method == "POST":
+    return create()
   
 @app.route("/users/<int:id>", methods=["GET", "PATCH", "DELETE"])
 def handle_user(id):
@@ -24,3 +26,7 @@ def handle_user(id):
 @app.errorhandler(exceptions.NotFound)
 def handle_404(err):
   return jsonify({"error": f"{err}"}), 404
+
+@app.errorhandler(exceptions.BadRequest)
+def handle_400(err):
+  return jsonify({"error": f"{err}"}), 400
