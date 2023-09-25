@@ -24,4 +24,4 @@ class Recipe(db.Model):
   
   @property
   def json(self):
-    return {"id": self.id, "user_id": self.user_id, "name": self.name, "description": self.description, "img_url": self.img_url}
+    return {"id": self.id, "user_id": self.user_id, "name": self.name, "culture": self.culture, "description": self.description, "img_url": self.img_url}
