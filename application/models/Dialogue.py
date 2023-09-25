@@ -8,11 +8,13 @@ class Dialogue(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False)
     receiver = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(100), nullable=False)
 
 
-def __init__(self, username, receiver):
+def __init__(self, username, receiver, title):
     self.username = username
     self.receiver = receiver
+    self.title = title
 
 
 def __repr__(self):

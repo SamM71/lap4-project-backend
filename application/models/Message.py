@@ -8,6 +8,7 @@ class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False)
     text = db.Column(db.String(500), nullable=False)
+    # dialogue = db.relationship('Dialogue', backref='dialogues', lazy=True)
 
 
 def __init__(self, username, text):
@@ -16,7 +17,7 @@ def __init__(self, username, text):
 
 
 def __repr__(self):
-    return f"Dialogue(id: {self.id}, username: {self.username}, text: {self.text})"
+    return f"Message(id: {self.id}, username: {self.username}, text: {self.text})"
 
 
 @property
