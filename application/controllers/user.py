@@ -3,6 +3,7 @@ from werkzeug import exceptions
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify, request
 from application import db
+from flask_jwt_extended import create_access_token
 import logging
 
 
@@ -71,16 +72,18 @@ def delete(id):
 def register(): 
   try:
     username, email, name, password = request.json.values()
-
+    print('hello')
     print('input values:', username, email, name, password)
     
-    if not username: 
-      raise exceptions.BadRequest(f'Unable to register, all fields need to be filled')
+    # if not username or not email or not password or not name: 
+    #   raise exceptions.BadRequest(f'Unable to register, all fields need to be filled')
     
-    elif User.query.filter_by(username = username).first():
+    if User.query.filter_by(username = username).first():
       raise exceptions.BadRequest(f'User {username} already exists')
+    
     elif User.query.filter_by(email=email).first():
       raise exceptions.BadRequest(f'User with email {email} already exists')
+    
     else: 
       hashed_password = generate_password_hash(password, method='scrypt')
       print('hashed password:', hashed_password)
@@ -96,7 +99,7 @@ def register():
       return jsonify({"error": str(e)}), 400
   except Exception as e:
       logging.error(f"An error occurred: {str(e)}")
-      return jsonify({"error": "Unable to register, please try again later."}), 500
+      return jsonify({"error": "Unable to register, all fields need to be filled"}), 500
   
 
 def login():
@@ -106,6 +109,7 @@ def login():
     print('input values:', username, password)
 
     if not username or not password:
+      print('no username or password provided')
       raise exceptions.BadRequest('Unable to login, please input both email and password')
     
     user = User.query.filter_by(username=username).first()
@@ -115,11 +119,15 @@ def login():
     
     if not check_password_hash(user.password, password):
       raise exceptions.BadRequest(f'Wrong credentials - incorrect password')
+    else: 
+      access_token = create_access_token(identity=user.id)
+      print('line 124:', access_token)
+      return jsonify({"message": "logged in successfully"}), 200
     
-    return jsonify({"message": "logged in successfully"}), 200
-
+  except exceptions.BadRequest as e:
+      return jsonify({"error": str(e)}), 400  
   except:
       raise exceptions.InternalServerError('Unable to login, please try again later')
-
+  
 
 
