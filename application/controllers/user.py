@@ -69,22 +69,18 @@ def register():
     
     if not username or not password or not email or not name: 
       raise exceptions.BadRequest(f'Unable to register, all fields need to be filled')
+    
     elif User.query.filter_by(username = username).first():
-      raise exceptions.BadRequest(f'User ${username} already exists')
+      raise exceptions.BadRequest(f'User {username} already exists')
     elif User.query.filter_by(email=email).first():
-      raise exceptions.BadRequest(f'User with email ${email} already exists')
+      raise exceptions.BadRequest(f'User with email {email} already exists')
     else: 
       hashed_password = generate_password_hash(password, method='scrypt')
       print('hashed password:', hashed_password)
       new_user = User(username=username, email=email, name=name, password=hashed_password)
-      print('new user:', new_user.id)
-      print('new user:', new_user.username)
-      print('new user:', new_user.email)
-      print('new user:', new_user.name)
-      print('new user:', new_user.password)
+      print('new user:', new_user.id, new_user.username, new_user.email, new_user.name, new_user.password)
       print('up to here all ok')
       db.session.add(new_user)
-      
       print('issue maybe starts here')
       db.session.commit()
       print('line , maybe here????')
@@ -94,4 +90,29 @@ def register():
   except Exception as e:
       logging.error(f"An error occurred: {str(e)}")
       return jsonify({"error": "Unable to register, please try again later."}), 500
+  
+
+def login():
+  try: 
+    username, password = request.json.values()
+
+    print('input values:', username, password)
+
+    if not username or not password:
+      raise exceptions.BadRequest('Unable to login, please input both email and password')
+    
+    user = User.query.filter_by(username=username).first()
+
+    if not user:
+      raise exceptions.BadRequest(f'Wrong credentials - username {username} not found')
+    
+    if not check_password_hash(user.password, password):
+      raise exceptions.BadRequest(f'Wrong credentials - incorrect password')
+    
+    return jsonify({"message": "logged in successfully"})
+
+  except:
+      raise exceptions.InternalServerError('Unable to login, please try again later')
+
+
 

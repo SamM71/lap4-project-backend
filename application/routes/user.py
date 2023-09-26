@@ -1,6 +1,6 @@
 from flask import jsonify, request, Blueprint
 from application import app
-from ..controllers.user import index, show, create, update, delete, show_by_username, register
+from ..controllers.user import index, show, create, update, delete, show_by_username, register, login
 
 user_bp = Blueprint('user_bp', __name__)
 
@@ -29,4 +29,8 @@ def handle_user_by_username(username):
 def handle_register():
   if request.method == "POST":
     return register()
-    # return show_by_username(username)
+
+@app.route("/users/login", methods=["POST"])
+def handle_login():
+  if request.method == "POST":
+    return login()
