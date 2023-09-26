@@ -1,5 +1,6 @@
 blinker==1.6.2
 click==8.1.7
+psycopg2-binary==2.9.7
 colorama==0.4.6
 Flask==2.3.3
 Flask-Cors==4.0.0
