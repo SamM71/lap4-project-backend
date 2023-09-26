@@ -13,7 +13,7 @@ pytest = "*"
 pytest-cov = "*"
 pytest-watch = "*"
 gunicorn = "*"
-
+flask-jwt-extended = "*"
 
 [dev-packages]
 pytest = "*"

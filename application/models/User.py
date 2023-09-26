@@ -9,7 +9,7 @@ class User(db.Model):
     username = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     name = db.Column(db.String(100), nullable=False)
-    password = db.Column(db.String(20), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
     recipes = db.relationship('Recipe', backref='users', lazy=True)
     saved_recipes = db.relationship('Saved_Recipe', backref='users', lazy=True)
 
