@@ -3,11 +3,13 @@ from werkzeug import exceptions
 from application import app
 from .user import user_bp
 from .recipe import recipe_bp
+from .saved_recipe import saved_bp
 from .message import message_bp
 from .dialogue import dialogue_bp
 
 app.register_blueprint(user_bp)
 app.register_blueprint(recipe_bp)
+app.register_blueprint(saved_bp)
 app.register_blueprint(message_bp)
 app.register_blueprint(dialogue_bp)
 
