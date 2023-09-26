@@ -21,7 +21,7 @@ class Recipe(db.Model):
         self.img_url = img_url
 
     def __repr__(self):
-        return f"Recipe(id: {self.id}, user_id: {self.user_id}, name: {self.name}, img_url: {self.img_url})"
+        return f"Recipe(id: {self.id}, user_id: {self.user_id}, name: {self.name})"
 
     @property
     def json(self):
