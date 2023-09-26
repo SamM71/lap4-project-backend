@@ -22,7 +22,8 @@ entry9 = Message(username="Charlie", text="Hello, I am a message")
 entry10 = Message(username="Rubina", text="Hello")
 entry11 = Token(user_id=1, token='hbkdhcvhcsvcgsvchsvchlsl')
 entry12 = Post(user_id=1, recipe_id=1, description="A very nice dish", story="I ate this with my family", img_url="url")
-db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11])
+
+db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12])
 db.session.commit()
 
 
