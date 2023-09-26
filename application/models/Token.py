@@ -5,8 +5,10 @@ app.app_context().push()
 class Token(db.Model):
     __tablename__ = "tokens"
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.relationship('User', backref='users', lazy=True)
-    token = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    token = db.Column(db.String(300), nullable=False)
+    users = db.relationship('User', backref='tokens', lazy=True)
+    # saved_recipes = db.relationship('Saved_Recipe', backref='recipes', lazy=True)
 
     def __init__ (self, user_id, token):
         self.user_id = user_id

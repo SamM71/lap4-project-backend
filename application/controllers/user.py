@@ -1,4 +1,5 @@
 from ..models.User import User
+from ..models.Token import Token
 from werkzeug import exceptions
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify, request
@@ -93,7 +94,7 @@ def register():
       db.session.add(new_user)
       print('issue maybe starts here')
       db.session.commit()
-      print('line , maybe here????')
+      print('line 97, maybe here????')
       return jsonify({"message": "Registration successful!", "user": new_user.json}), 201
   except exceptions.BadRequest as e:
       return jsonify({"error": str(e)}), 400
@@ -122,6 +123,16 @@ def login():
     else: 
       access_token = create_access_token(identity=user.id)
       print('line 124:', access_token)
+
+      token = Token(user_id=user.id, token=access_token)
+      print('line 128:', token)
+      db.session.add(token)
+      print('this is working')
+      try:
+        db.session.commit()
+      except Exception as e:
+        # db.session.rollback()
+        print(f"Error committing to the database: {str(e)}")
       return jsonify({"message": "logged in successfully"}), 200
     
   except exceptions.BadRequest as e:
@@ -130,4 +141,30 @@ def login():
       raise exceptions.InternalServerError('Unable to login, please try again later')
   
 
+# TOKENS CONTROLLER FUNCTIONALITY
 
+def index_token():
+  try:
+      tokens = Token.query.all()
+      print ('all tokens:', tokens)
+      data = [t.json for t in tokens]
+      return jsonify({"tokens": data})
+  except:
+     raise exceptions.NotFound('No tokens found')
+
+
+def destroy_token(id):
+  try:
+      token = Token.query.filter_by(id=id).first()
+      if token:
+        db.session.delete(token)
+        db.session.commit()
+        return f'Token deleted'
+      else:
+        raise exceptions.NotFound ('Token not found')
+  except Exception as e:
+      return jsonify({"error": str(e)}), 404
+  except:
+      raise exceptions.InternalServerError ('Unable to delete token')
+   
+      
