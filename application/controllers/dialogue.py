@@ -10,7 +10,12 @@ def index():
     return jsonify({"dialogues": data})
 
 
-def create(title):
+def create():
+    username, receiver, title = request.json.values()
+    print(username)
     dialogue = Dialogue.query.filter_by(title=title).first()
-    return jsonify({"dialogue": dialogue.json}), 200
+    if dialogue:
+        return jsonify({"dialogue": dialogue.json}), 200
+    else:
+        return jsonify({"error": "No dialogue found"})
 

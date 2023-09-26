@@ -13,6 +13,6 @@ def handle_dialogues():
 
 
 @app.route("/dialogues", methods=["POST"])
-def handle_dialogues(string):
+def handle_dialogue():
     if request.method == "POST":
-        return create(string)
+        return create()
