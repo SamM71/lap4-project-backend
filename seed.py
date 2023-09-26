@@ -5,7 +5,7 @@ from application.models.Saved_Recipe import Saved_Recipe
 from application.models.Dialogue import Dialogue
 from application.models.Message import Message
 from application.models.Token import Token
-
+from application.models.Post import Post
 
 db.drop_all()
 db.create_all()
@@ -21,6 +21,7 @@ entry8 = Dialogue(username="Charlie", receiver="Sam", title="charlie-sam")
 entry9 = Message(username="Charlie", text="Hello, I am a message")
 entry10 = Message(username="Rubina", text="Hello")
 entry11 = Token(user_id=1, token='hbkdhcvhcsvcgsvchsvchlsl')
+entry12 = Post(user_id=1, recipe_id=1, description="A very nice dish", story="I ate this with my family", img_url="url")
 db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11])
 db.session.commit()
 

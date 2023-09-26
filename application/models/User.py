@@ -12,6 +12,7 @@ class User(db.Model):
     password = db.Column(db.String(200), nullable=False)
     recipes = db.relationship('Recipe', backref='users', lazy=True)
     saved_recipes = db.relationship('Saved_Recipe', backref='users', lazy=True)
+    posts = db.relationship('Post', backref='users', lazy=True)
 
     def __init__(self, username, email, name, password):
         self.username = username
