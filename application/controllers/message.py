@@ -17,7 +17,10 @@ def create():
     new_message = Message(username, text)
     db.session.add(new_message)
     db.session.commit()
-    return jsonify({"new_message": new_message.json})
+    messages = Message.query.all()
+    data = [m.json for m in messages]
+    print(messages)
+    return jsonify({"messages": data})
 
 
 

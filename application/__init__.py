@@ -8,8 +8,10 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
+sock = Sock(app)
 app.json_provider_class.sort_keys = False
 CORS(app)
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
 # app.config['SQLALCHEMY_ECHO'] = True 
