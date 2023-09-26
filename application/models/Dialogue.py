@@ -19,4 +19,4 @@ class Dialogue(db.Model):
 
     @property
     def json(self):
-        return {"id": self.id, "username": self.username, "receiver": self.receiver, "title": self.title}
+        return {"id": self.dialogue_id, "username": self.username, "receiver": self.receiver}
