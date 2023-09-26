@@ -19,3 +19,8 @@ def create():
     else:
         return jsonify({"error": "No dialogue found"})
 
+
+def show(id):
+    dialogue = Dialogue.query.filter_by(dialogue_id=id).first()
+    return jsonify({"dialogue": dialogue.json})
+

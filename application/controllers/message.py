@@ -23,5 +23,10 @@ def create():
     return jsonify({"messages": data})
 
 
+def show(id):
+    messages = Message.query.filter_by(dialogue_id=id)
+    data = [m.json for m in messages]
+    return jsonify({"messages": data})
+
 
 

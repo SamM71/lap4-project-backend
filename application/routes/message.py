@@ -1,6 +1,6 @@
 from flask import jsonify, request, Blueprint
 from application import app
-from ..controllers.message import index, create
+from ..controllers.message import index, create, show
 
 message_bp = Blueprint('message_bp', __name__)
 
@@ -13,5 +13,8 @@ def handle_messages():
         return create()
 
 
-
+@app.route("/messages/<int:id>", methods=["GET"])
+def handle_view_message(id):
+    if request.method == "GET":
+        return show(id)
 
