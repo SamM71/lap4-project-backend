@@ -13,8 +13,8 @@ def index():
 
 
 def create():
-    username, text = request.json.values()
-    new_message = Message(username, text)
+    username, text, dialogue_id = request.json.values()
+    new_message = Message(username, text, dialogue_id)
     db.session.add(new_message)
     db.session.commit()
     messages = Message.query.all()

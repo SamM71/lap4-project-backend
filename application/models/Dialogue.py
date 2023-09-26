@@ -5,15 +5,14 @@ app.app_context().push()
 
 class Dialogue(db.Model):
     __tablename__ = "dialogues"
-    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False)
     receiver = db.Column(db.String(100), nullable=False)
-    title = db.Column(db.String(100), nullable=False)
+    dialogue_id = db.Column(db.Integer, primary_key=True)
 
-    def __init__(self, username, receiver, title):
+    def __init__(self, username, receiver, dialogue_id):
         self.username = username
         self.receiver = receiver
-        self.title = title
+        self.dialogue_id = dialogue_id
 
     def __repr__(self):
         return f"Dialogue(id: {self.id}, username: {self.username}, receiver: {self.receiver})"

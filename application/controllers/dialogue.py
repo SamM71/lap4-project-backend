@@ -11,9 +11,9 @@ def index():
 
 
 def create():
-    username, receiver, title = request.json.values()
+    username, receiver, dialogue_id = request.json.values()
     print(username)
-    dialogue = Dialogue.query.filter_by(title=title).first()
+    dialogue = Dialogue.query.filter_by(dialogue_id=dialogue_id).first()
     if dialogue:
         return jsonify({"dialogue": dialogue.json}), 200
     else:
