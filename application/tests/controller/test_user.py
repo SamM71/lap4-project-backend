@@ -1,26 +1,34 @@
 from application.models import User
 import pytest
-from application.controllers.user import index 
-# import json
+from application.controllers.user import index, show
+import json
+import logging
 
-class MockUser:
-    def __init__(self, username, email, name, password):
-        self.username = username
-        self.email = email
-        self.name = name
-        self.password = password
+@pytest.fixture
+def mock_user_data():
+    user1 = User(username='username1', email='email1', name='user1', password='password1')
+    user1.id = 1
+    user2 = User(username='username2', email='email2', name='user2', password='password2')
+    user2.id = 2
+    return [user1, user2]
 
-def test_index(monkeypatch):
-    user_data = [{'username':'username1', 'email':'email1', 'name':'user1', 'password':'password1'}, {'username':'username2', 'email':'email2', 'name':'user2', 'password':'password2'}]
 
-    users = [MockUser(**data) for data in user_data]
 
-    def mock_query_all():
-        return users
-    
-    monkeypatch.setattr(User.query, 'all', mock_query_all)
+def test_index(monkeypatch, mock_user_data):
+
+    class MockQuery:
+        @staticmethod
+        def all():
+            return mock_user_data
+
+    monkeypatch.setattr(User, 'query', MockQuery())
 
     response = index()
 
+    expected_json = {'users': [{'id': 1, 'username': 'username1', 'email': 'email1', 'name': 'user1', 'password': 'password1'},
+                               {'id': 2, 'username': 'username2', 'email': 'email2', 'name': 'user2', 'password': 'password2'}]}
+    
     assert response.status_code == 200
-    assert response.json == {'users': user_data}  #NOT PASSING!!!
+    assert response.json == expected_json
+
+
