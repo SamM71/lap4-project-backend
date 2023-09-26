@@ -1,8 +1,10 @@
 from ..models.User import User
+from ..models.Token import Token
 from werkzeug import exceptions
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify, request
 from application import db
+from flask_jwt_extended import create_access_token
 import logging
 
 
@@ -71,34 +73,98 @@ def delete(id):
 def register(): 
   try:
     username, email, name, password = request.json.values()
-
+    print('hello')
     print('input values:', username, email, name, password)
     
-    if not username or not password or not email or not name: 
-      raise exceptions.BadRequest(f'Unable to register, all fields need to be filled')
-    elif User.query.filter_by(username = username).first():
-      raise exceptions.BadRequest(f'User ${username} already exists')
+    # if not username or not email or not password or not name: 
+    #   raise exceptions.BadRequest(f'Unable to register, all fields need to be filled')
+    
+    if User.query.filter_by(username = username).first():
+      raise exceptions.BadRequest(f'User {username} already exists')
+    
     elif User.query.filter_by(email=email).first():
-      raise exceptions.BadRequest(f'User with email ${email} already exists')
+      raise exceptions.BadRequest(f'User with email {email} already exists')
+    
     else: 
       hashed_password = generate_password_hash(password, method='scrypt')
       print('hashed password:', hashed_password)
       new_user = User(username=username, email=email, name=name, password=hashed_password)
-      print('new user:', new_user.id)
-      print('new user:', new_user.username)
-      print('new user:', new_user.email)
-      print('new user:', new_user.name)
-      print('new user:', new_user.password)
+      print('new user:', new_user.id, new_user.username, new_user.email, new_user.name, new_user.password)
       print('up to here all ok')
       db.session.add(new_user)
-      
       print('issue maybe starts here')
       db.session.commit()
-      print('line , maybe here????')
+      print('line 97, maybe here????')
       return jsonify({"message": "Registration successful!", "user": new_user.json}), 201
   except exceptions.BadRequest as e:
       return jsonify({"error": str(e)}), 400
   except Exception as e:
       logging.error(f"An error occurred: {str(e)}")
-      return jsonify({"error": "Unable to register, please try again later."}), 500
+      return jsonify({"error": "Unable to register, all fields need to be filled"}), 500
+  
 
+def login():
+  try: 
+    username, password = request.json.values()
+
+    print('input values:', username, password)
+
+    if not username or not password:
+      print('no username or password provided')
+      raise exceptions.BadRequest('Unable to login, please input both email and password')
+    
+    user = User.query.filter_by(username=username).first()
+
+    if not user:
+      raise exceptions.BadRequest(f'Wrong credentials - username {username} not found')
+    
+    if not check_password_hash(user.password, password):
+      raise exceptions.BadRequest(f'Wrong credentials - incorrect password')
+    else: 
+      access_token = create_access_token(identity=user.id)
+      print('line 124:', access_token)
+
+      token = Token(user_id=user.id, token=access_token)
+      print('line 128:', token)
+      db.session.add(token)
+      print('this is working')
+      try:
+        db.session.commit()
+      except Exception as e:
+        # db.session.rollback()
+        print(f"Error committing to the database: {str(e)}")
+      return jsonify({"message": "logged in successfully"}), 200
+    
+  except exceptions.BadRequest as e:
+      return jsonify({"error": str(e)}), 400  
+  except:
+      raise exceptions.InternalServerError('Unable to login, please try again later')
+  
+
+# TOKENS CONTROLLER FUNCTIONALITY
+
+def index_token():
+  try:
+      tokens = Token.query.all()
+      print ('all tokens:', tokens)
+      data = [t.json for t in tokens]
+      return jsonify({"tokens": data})
+  except:
+     raise exceptions.NotFound('No tokens found')
+
+
+def destroy_token(id):
+  try:
+      token = Token.query.filter_by(id=id).first()
+      if token:
+        db.session.delete(token)
+        db.session.commit()
+        return f'Token deleted'
+      else:
+        raise exceptions.NotFound ('Token not found')
+  except Exception as e:
+      return jsonify({"error": str(e)}), 404
+  except:
+      raise exceptions.InternalServerError ('Unable to delete token')
+   
+      

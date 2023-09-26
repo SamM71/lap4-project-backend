@@ -14,6 +14,8 @@ pytest-cov = "*"
 pytest-watch = "*"
 gunicorn = "*"
 flask-sock = "*"
+flask-jwt-extended = "*"
+
 
 [dev-packages]
 pytest = "*"
