@@ -7,7 +7,6 @@ def index():
   try:
     recipes = Recipe.query.all()
     data = [r.json for r in recipes]
-    print(data)
     return jsonify({"recipes": data})
   except:
     raise exceptions.NotFound("No recipes found.")
