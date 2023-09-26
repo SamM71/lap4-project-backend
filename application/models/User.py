@@ -26,3 +26,4 @@ class User(db.Model):
     def json(self):
         return {"id": self.id, "username": self.username, "email": self.email, "name": self.name,
                 "password": self.password}  # remove password?
+

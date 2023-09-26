@@ -9,6 +9,9 @@ flask-cors = "*"
 flask-sqlalchemy = "*"
 flask = "*"
 psycopg2-binary = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-watch = "*"
 gunicorn = "*"
 
 

@@ -11,6 +11,6 @@ app.json_provider_class.sort_keys = False
 CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
+# app.config['SQLALCHEMY_ECHO'] = True 
 
 db = SQLAlchemy(app)
-

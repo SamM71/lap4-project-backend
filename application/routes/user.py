@@ -1,6 +1,6 @@
 from flask import jsonify, request, Blueprint
 from application import app
-from ..controllers.user import index, show, create, update, delete, show_by_username
+from ..controllers.user import index, show, create, update, delete, show_by_username, register
 
 user_bp = Blueprint('user_bp', __name__)
 
@@ -25,5 +25,13 @@ def handle_user(id):
 
 @app.route("/users/<username>", methods=["GET"])
 def handle_user_by_username(username):
+  if request.method == "GET":
+    return show_by_username(username)
+  
+@app.route("/users/register", methods=["POST"])
+def handle_register():
+  if request.method == "POST":
+    return register()
+    # return show_by_username(username)
     if request.method == "GET":
         return show_by_username(username)

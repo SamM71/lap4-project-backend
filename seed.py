@@ -23,3 +23,4 @@ entry10 = Message(username="Rubina", text="Hello")
 db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10])
 db.session.commit()
 
+
