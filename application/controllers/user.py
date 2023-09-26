@@ -67,7 +67,7 @@ def register():
 
     print('input values:', username, email, name, password)
     
-    if not username or not password or not email or not name: 
+    if not username: 
       raise exceptions.BadRequest(f'Unable to register, all fields need to be filled')
     
     elif User.query.filter_by(username = username).first():
@@ -109,7 +109,7 @@ def login():
     if not check_password_hash(user.password, password):
       raise exceptions.BadRequest(f'Wrong credentials - incorrect password')
     
-    return jsonify({"message": "logged in successfully"})
+    return jsonify({"message": "logged in successfully"}), 200
 
   except:
       raise exceptions.InternalServerError('Unable to login, please try again later')
