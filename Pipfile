@@ -13,7 +13,7 @@ pytest = "*"
 pytest-cov = "*"
 pytest-watch = "*"
 gunicorn = "*"
-
+flask-sock = "*"
 
 [dev-packages]
 pytest = "*"
