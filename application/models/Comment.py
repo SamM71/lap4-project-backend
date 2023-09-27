@@ -17,7 +17,7 @@ class Comment(db.Model):
         self.text = text
 
     def __repr__(self):
-        return f"Post(id: {self.id}, user_id: {self.user_id}, recipe_id: {self.post_id})"
+        return f"Comment(id: {self.id}, user_id: {self.user_id}, post_id: {self.post_id})"
 
     @property
     def json(self):
