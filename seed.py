@@ -5,8 +5,8 @@ from application.models.Saved_Recipe import Saved_Recipe
 from application.models.Dialogue import Dialogue
 from application.models.Message import Message
 from application.models.Token import Token
-
-
+from application.models.Post import Post
+from application.models.Comment import Comment
 
 db.drop_all()
 db.create_all()
@@ -26,8 +26,11 @@ entry13 = Dialogue(username="charlie", receiver="rubina1", dialogue_id=2)
 entry14 = Dialogue(username="charlie", receiver="charlie1", dialogue_id=3)
 entry15 = Dialogue(username="charlie", receiver="ranti1", dialogue_id=4)
 entry16 = Dialogue(username="charlie", receiver="hasan1", dialogue_id=5)
+entry17 = Post(user_id=1, recipe_id=1, description="A very nice dish", story="I ate this with my family", img_url="url")
+entry18 = Comment(user_id=4, post_id=1, text="nice post!")
+
 db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry9, entry10, entry11, entry12,
-                    entry13, entry14, entry15, entry16])
+                    entry13, entry14, entry15, entry16, entry17, entry18])
 db.session.commit()
 
 
