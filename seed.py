@@ -18,14 +18,19 @@ entry4 = User(name="Ranti", email="ranti@example.com", username="ranti1", passwo
 entry5 = User(name="Hasan", email="hasan@example.com", username="hasan1", password="jkl")
 entry6 = Recipe(user_id=1, name="recipe1", culture="culture1", description="example recipe", img_url="url")
 entry7 = Saved_Recipe(user_id=2, recipe_id=1)
-entry8 = Dialogue(username="Charlie", receiver="Sam", title="charlie-sam")
-entry9 = Message(username="Charlie", text="Hello, I am a message")
-entry10 = Message(username="Rubina", text="Hello")
+entry9 = Message(username="charlie", text="Hello, I am a message", dialogue_id=1)
+entry10 = Message(username="rubina1", text="Hello", dialogue_id=2)
 entry11 = Token(user_id=1, token='hbkdhcvhcsvcgsvchsvchlsl')
-entry12 = Post(user_id=1, recipe_id=1, description="A very nice dish", story="I ate this with my family", img_url="url")
-entry13 = Comment(user_id=4, post_id=1, text="nice post!")
+entry12 = Dialogue(username="charlie", receiver="sam1", dialogue_id=1)
+entry13 = Dialogue(username="charlie", receiver="rubina1", dialogue_id=2)
+entry14 = Dialogue(username="charlie", receiver="charlie1", dialogue_id=3)
+entry15 = Dialogue(username="charlie", receiver="ranti1", dialogue_id=4)
+entry16 = Dialogue(username="charlie", receiver="hasan1", dialogue_id=5)
+entry17 = Post(user_id=1, recipe_id=1, description="A very nice dish", story="I ate this with my family", img_url="url")
+entry18 = Comment(user_id=4, post_id=1, text="nice post!")
 
-db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13])
+db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry9, entry10, entry11, entry12,
+                    entry13, entry14, entry15, entry16, entry17, entry18])
 db.session.commit()
 
 
