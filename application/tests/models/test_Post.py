@@ -3,7 +3,7 @@ from ...models.Post import Post
 
 @pytest.fixture
 def post_test_data():
-  post = Post("3", "2", "my description", "my story", "testurl")
+  post = Post(3, 2, "my description", "my story", "testurl")
   post.id = 5
   return post
 
