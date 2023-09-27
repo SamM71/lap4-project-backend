@@ -57,7 +57,7 @@ Please note that all of the `/tasks` endpoints are unavailable without an authen
 | Messaging and Dialogues |
 | `/messages` | `GET` | Returns a JSON object containing all messages. |
 | `/messages` | `POST` | Accepts a JSON object and uses it to create and store a new message using. |
-| `/messages/<int:id>` | `GET` | Returns a JSON object representing a single message using `id`. |
+| `/messages/<int:id>` | `GET` | Returns a JSON object representing all messages sharing `id`. |
 | `/dialogues` | `GET` | Returns a JSON object containing all dialogues. |
 | `/dialogues` | `POST` | Accepts a JSON object and uses it to create and store a new dialogue. |
 | `/dialogues/<int:id>` | `GET` | Returns a JSON object representing a single message using `id`. |
