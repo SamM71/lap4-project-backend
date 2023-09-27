@@ -37,3 +37,6 @@ Please note that all of the `/tasks` endpoints are unavailable without an authen
 | `/recipes/<name>` | `GET` | Returns a JSON object representing a single recipe by using its name. |
 | `/recipes/<int:id>` | `PATCH` | Updates a recipe based on `id` and the sent JSON object. |
 | `/recipes/<int:id>` | `DELETE` | Deletes a recipe using `id`. |
+| `/saved/<int:uid>` | `GET` | Displays a user's saved recipes using user_id. |
+| `/saved/<int:uid>/<int:rid>` | `POST` | Creates a saved recipe using user_id and recipe_id. |
+| `/saved/<int:uid>/<int:rid>` | `DELETE` | Deletes a saved recipe using user_id and recipe_id. |
