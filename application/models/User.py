@@ -2,7 +2,6 @@ from application import app, db
 
 app.app_context().push()
 
-
 class User(db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
@@ -13,6 +12,7 @@ class User(db.Model):
     recipes = db.relationship('Recipe', backref='users', lazy=True)
     saved_recipes = db.relationship('Saved_Recipe', backref='users', lazy=True)
     posts = db.relationship('Post', backref='users', lazy=True)
+    comments = db.relationship('Comment', backref='users', lazy=True)
 
     def __init__(self, username, email, name, password):
         self.username = username

@@ -6,6 +6,7 @@ from application.models.Dialogue import Dialogue
 from application.models.Message import Message
 from application.models.Token import Token
 from application.models.Post import Post
+from application.models.Comment import Comment
 
 db.drop_all()
 db.create_all()
@@ -22,8 +23,9 @@ entry9 = Message(username="Charlie", text="Hello, I am a message")
 entry10 = Message(username="Rubina", text="Hello")
 entry11 = Token(user_id=1, token='hbkdhcvhcsvcgsvchsvchlsl')
 entry12 = Post(user_id=1, recipe_id=1, description="A very nice dish", story="I ate this with my family", img_url="url")
+entry13 = Comment(user_id=4, post_id=1, text="nice post!")
 
-db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12])
+db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry8, entry9, entry10, entry11, entry12, entry13])
 db.session.commit()
 
 

@@ -3,7 +3,6 @@ import datetime
 
 app.app_context().push()
 
-
 class Post(db.Model):
     __tablename__ = "posts"
     id = db.Column(db.Integer, primary_key=True)
@@ -13,6 +12,7 @@ class Post(db.Model):
     story = db.Column(db.String(100), nullable=False)
     img_url = db.Column(db.String(100))
     time_posted = db.Column(db.DateTime, default=datetime.datetime.now)
+    comments = db.relationship('Comment', backref='posts', lazy=True)
 
     def __init__(self, user_id, recipe_id, description, story, img_url):
         self.user_id = user_id
