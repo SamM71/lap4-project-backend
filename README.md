@@ -32,11 +32,21 @@ Please note that all of the `/tasks` endpoints are unavailable without an authen
 | `/users/tokens` | `GET` | Returns a JSON object containing all of the tokens. |
 | `/users/tokens/<int:id>` | `POST` | Logs a user in and creates a token for them. |
 | `/recipes` | `GET` | Returns a JSON object containing all the recipes. |
-| `/recipes` | `POST` | Accepts a JSON object and uses it to create and store a new recipes. |
+| `/recipes` | `POST` | Accepts a JSON object and uses it to create and store a new recipe. |
 | `/recipes/<int:id>` | `GET` | Returns a JSON object representing a single recipe using `id`. |
 | `/recipes/<name>` | `GET` | Returns a JSON object representing a single recipe by using its name. |
 | `/recipes/<int:id>` | `PATCH` | Updates a recipe based on `id` and the sent JSON object. |
 | `/recipes/<int:id>` | `DELETE` | Deletes a recipe using `id`. |
-| `/saved/<int:uid>` | `GET` | Displays a user's saved recipes using user_id. |
-| `/saved/<int:uid>/<int:rid>` | `POST` | Creates a saved recipe using user_id and recipe_id. |
-| `/saved/<int:uid>/<int:rid>` | `DELETE` | Deletes a saved recipe using user_id and recipe_id. |
+| `/saved/<int:uid>` | `GET` | Displays a user's saved recipes using `user_id`. |
+| `/saved/<int:uid>/<int:rid>` | `POST` | Creates a saved recipe using `user_id` and `recipe_id`. |
+| `/saved/<int:uid>/<int:rid>` | `DELETE` | Deletes a saved recipe using `user_id` and `recipe_id`. |
+| `/posts` | `GET` | Returns a JSON object containing all the posts. |
+| `/posts` | `POST` | Accepts a JSON object and uses it to create and store a new post. |
+| `/posts/<int:id>` | `GET` | Returns a JSON object representing a single post using `id`. |
+| `/posts/<int:id>` | `PATCH` | Updates a post based on `id` and the sent JSON object. |
+| `/posts/<int:id>` | `DELETE` | Deletes a post using `id`. |
+| `/posts/<int:pid>/comments` | `GET` | Returns a JSON object containing all the comments with the specified `post_id`. |
+| `/posts/<int:pid>/comments` | `POST` | Accepts a JSON object and uses it to create and store a new comment using the `post_id`. |
+| `/posts/<int:pid>/comments/<int:id>` | `GET` | Returns a JSON object representing a single comment using `id`. |
+| `/posts/<int:pid>/comments/<int:id>` | `PATCH` | Updates a comment based on `id` and the sent JSON object. |
+| `/posts/<int:pid>/comments/<int:id>` | `DELETE` | Deletes a comment using `id`. |
