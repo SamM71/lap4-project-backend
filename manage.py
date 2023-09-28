@@ -1,4 +1,5 @@
-from application import db
+from flask.cli import FlaskGroup
+from application import app, db
 from application.models.User import User
 from application.models.Recipe import Recipe
 from application.models.Saved_Recipe import Saved_Recipe
@@ -8,6 +9,9 @@ from application.models.Token import Token
 from application.models.Post import Post
 from application.models.Comment import Comment
 
+cli = FlaskGroup(app)
+
+@cli.command("create_db")
 def create_db():
 
   db.drop_all()
@@ -35,6 +39,5 @@ def create_db():
                       entry13, entry14, entry15, entry16, entry17, entry18])
   db.session.commit()
 
-create_db()
-
-
+if __name__ == "__main__":
+  cli()
