@@ -114,11 +114,15 @@ def login():
       raise exceptions.BadRequest('Unable to login, please input both email and password')
     
     user = User.query.filter_by(username=username).first()
+    # print('heeeey')
+    # print('data type', type( User.query.filter_by(username=username).first()))
 
-    if not user:
+    if not User.query.filter_by(username=username).first():
+      print(f'User with username {username} not found')
       raise exceptions.BadRequest(f'Wrong credentials - username {username} not found')
     
     if not check_password_hash(user.password, password):
+      print(f'Incorrect password for user {username}')
       raise exceptions.BadRequest(f'Wrong credentials - incorrect password')
     else: 
       access_token = create_access_token(identity=user.id)
@@ -133,7 +137,7 @@ def login():
       except Exception as e:
         # db.session.rollback()
         print(f"Error committing to the database: {str(e)}")
-      return jsonify({"message": "logged in successfully"}), 200
+      return jsonify({"message": "logged in successfully", "token": access_token}), 200
     
   except exceptions.BadRequest as e:
       return jsonify({"error": str(e)}), 400  
