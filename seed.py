@@ -8,6 +8,7 @@ from application.models.Token import Token
 from application.models.Post import Post
 from application.models.Comment import Comment
 
+
 def create_db():
 
   db.drop_all()
@@ -30,10 +31,14 @@ def create_db():
   entry16 = Dialogue(username="charlie", receiver="hasan1", dialogue_id=5)
   entry17 = Post(user_id=1, recipe_id=1, description="A very nice dish", story="I ate this with my family", img_url="url")
   entry18 = Comment(user_id=4, post_id=1, text="nice post!")
+  entry19 = Post(user_id=2, recipe_id=2, description="This is post2", story="This is post2's story",
+                 img_url="url")
+  entry20 = Recipe(user_id=2, name="recipe2", culture="culture2", description="example recipe 2", img_url="url")
 
   db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry9, entry10, entry11, entry12,
-                      entry13, entry14, entry15, entry16, entry17, entry18])
+                      entry13, entry14, entry15, entry16, entry17, entry18, entry19, entry20])
   db.session.commit()
+
 
 create_db()
 
