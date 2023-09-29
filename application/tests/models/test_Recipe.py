@@ -3,7 +3,7 @@ from ...models.Recipe import Recipe
 
 @pytest.fixture
 def recipe_test_data():
-  recipe = Recipe("3", "testrecipe", "testculture", "A wonderful recipe", "testurl")
+  recipe = Recipe("3", "testrecipe", "testculture", ["i1", "i2"], ["s1", "s2"], "A wonderful recipe", "testurl")
   recipe.id = 5
   return recipe
 
