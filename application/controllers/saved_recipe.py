@@ -1,13 +1,14 @@
 from ..models.Saved_Recipe import Saved_Recipe
+from ..models.Recipe import Recipe
 from werkzeug import exceptions
 from flask import jsonify, request
 from .. import db
 
 def index(user_id):
   try:
-    recipes = Saved_Recipe.query.filter_by(user_id=user_id)
+    # recipes = db.session.query(Saved_Recipe, Recipe).filter_by(user_id=user_id).filter(Saved_Recipe, Recipe.id==Saved_Recipe.recipe_id).all()
+    recipes = db.session.query(Recipe).join(Saved_Recipe).filter_by(user_id=user_id).all()
     data = [r.json for r in recipes]
-    print(data)
     return jsonify({"saved_recipes": data}), 200
   except:
     raise exceptions.NotFound("No saved recipes found for user.")
