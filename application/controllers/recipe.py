@@ -28,8 +28,8 @@ def show_by_name(name):
 
 def create():
   try:
-    user_id, name, culture, description, img_url = request.json.values()
-    new_recipe = Recipe(user_id, name, culture, description, img_url)
+    user_id, name, culture, ingredients, steps, description, img_url = request.json.values()
+    new_recipe = Recipe(user_id, name, culture, ingredients, steps, description, img_url)
     db.session.add(new_recipe)
     db.session.commit()
     return jsonify({"new_recipe": new_recipe.json}), 201
