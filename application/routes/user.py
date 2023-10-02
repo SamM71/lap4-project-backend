@@ -1,6 +1,7 @@
 from flask import jsonify, request, Blueprint
 from application import app
 from ..controllers.user import index, show, create, update, delete, show_by_username, register, login, index_token, destroy_token
+from ..models.User import User
 
 user_bp = Blueprint('user_bp', __name__)
 
@@ -12,6 +13,23 @@ def handle_users():
     if request.method == "POST":
         return create()
 
+@app.route("/users/<email>", methods=["GET"])
+def check_email_availability(email):
+    user_with_email = User.query.filter_by(email=email).first()
+    if user_with_email is not None:
+        available = False
+    else:
+        available = True
+    return jsonify({"available": available})
+
+@app.route("/users/<username>", methods=["GET"])
+def check_username_availability(username):
+    user_with_username = User.query.filter_by(username=username).first()
+    if user_with_username is not None:
+        available = False
+    else:
+        available = True
+    return jsonify({"available": available})
 
 @app.route("/users/<int:id>", methods=["GET", "PATCH", "DELETE"])
 def handle_user(id):
