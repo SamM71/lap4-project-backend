@@ -1,7 +1,7 @@
 from application import app
 import pytest
 from flask import jsonify
-from ...controllers.recipe import index
+from ...controllers.recipe import index, show, show_by_name
 from ...models.Recipe import Recipe
 
 @pytest.fixture
@@ -27,4 +27,12 @@ def test_index(monkeypatch, recipe_test_data):
   assert 'desc1' in str(data)
   assert res.status_code == 200
     
-  
+def test_show():
+  res = show(1)
+  assert '"id": 1' in str(res[0].data)
+  assert res[0].status_code == 200
+
+def test_show_by_name():
+  res = show_by_name('recipe1')
+  assert '"name": "recipe1"' in str(res[0].data)
+  assert res[0].status_code == 200
