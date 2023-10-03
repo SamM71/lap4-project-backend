@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from flask_sock import Sock
+# from flask_sock import Sock
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
@@ -9,7 +9,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-sock = Sock(app)
+# sock = Sock(app)
 app.json_provider_class.sort_keys = False
 CORS(app)
 
