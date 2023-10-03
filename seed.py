@@ -19,7 +19,7 @@ def create_db():
   entry3 = User(name="Charlie", email="charlie@example.com", username="charlie1", password="jkl")
   entry4 = User(name="Ranti", email="ranti@example.com", username="ranti1", password="jkl")
   entry5 = User(name="Hasan", email="hasan@example.com", username="hasan1", password="jkl")
-  entry6 = Recipe(user_id=1, name="recipe1", culture="a culture", ingredients=['500g ingredient1', '250ml ingredient2'], steps=['first step', 'second step'], description="example recipe", img_url="url")
+  entry6 = Recipe(user_id=1, name="recipe1", culture="a culture", ingredients=[{'ingredient': 'ingredient1', 'amount': '500g'}, {'ingredient': 'ingredient2', 'amount': '250ml'}], steps=[{'step': 'first step'}, {'step': 'second step'}], description="example recipe", img_url="cucina/food_vbd3ll")
   entry7 = Saved_Recipe(user_id=2, recipe_id=1)
   entry9 = Message(username="charlie", text="Hello, I am a message", dialogue_id=1)
   entry10 = Message(username="rubina1", text="Hello", dialogue_id=2)
@@ -31,12 +31,13 @@ def create_db():
   entry16 = Dialogue(username="charlie", receiver="hasan1", dialogue_id=5)
   entry17 = Post(user_id=1, recipe_id=1, description="A very nice dish", story="I ate this with my family", img_url="url")
   entry18 = Comment(user_id=4, post_id=1, text="nice post!")
-  entry19 = Post(user_id=2, recipe_id=2, description="This is post2", story="This is post2's story",
-                 img_url="url")
-  entry20 = Recipe(user_id=2, name="recipe2", ingredients=['500g ingredient1', '250ml ingredient2'], steps=['1', '2'], culture="culture2", description="example recipe 2", img_url="url")
+  entry19 = Recipe(user_id=2, name="recipe2", culture="a culture", ingredients=[{'ingredient': 'ingredient1', 'amount': '500g'}, {'ingredient': 'ingredient2', 'amount': '250ml'}], steps=[{'step': 'first step'}, {'step': 'second step'}], description="example recipe", img_url="cucina/food_vbd3ll")
+  entry20 = Saved_Recipe(user_id=4, recipe_id=2)
+  entry21 = Saved_Recipe(user_id=4, recipe_id=1)
 
   db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry9, entry10, entry11, entry12,
-                      entry13, entry14, entry15, entry16, entry17, entry18, entry19, entry20])
+                      entry13, entry14, entry15, entry16, entry17, entry18, entry19, entry20, entry21])
+
   db.session.commit()
 
 
