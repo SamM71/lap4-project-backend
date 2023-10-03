@@ -33,7 +33,7 @@ def create_db():
   entry18 = Comment(user_id=4, post_id=1, text="nice post!")
   entry19 = Post(user_id=2, recipe_id=2, description="This is post2", story="This is post2's story",
                  img_url="url")
-  entry20 = Recipe(user_id=2, name="recipe2", culture="culture2", description="example recipe 2", img_url="url")
+  entry20 = Recipe(user_id=2, name="recipe2", ingredients=['500g ingredient1', '250ml ingredient2'], steps=['1', '2'], culture="culture2", description="example recipe 2", img_url="url")
 
   db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry9, entry10, entry11, entry12,
                       entry13, entry14, entry15, entry16, entry17, entry18, entry19, entry20])
