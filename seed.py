@@ -30,9 +30,12 @@ def create_db():
   entry16 = Dialogue(username="charlie", receiver="hasan1", dialogue_id=5)
   entry17 = Post(user_id=1, recipe_id=1, description="A very nice dish", story="I ate this with my family", img_url="url")
   entry18 = Comment(user_id=4, post_id=1, text="nice post!")
+  entry19 = Recipe(user_id=2, name="recipe2", culture="a culture", ingredients=[{'ingredient': 'ingredient1', 'amount': '500g'}, {'ingredient': 'ingredient2', 'amount': '250ml'}], steps=[{'step': 'first step'}, {'step': 'second step'}], description="example recipe", img_url="cucina/food_vbd3ll")
+  entry20 = Saved_Recipe(user_id=4, recipe_id=2)
+  entry21 = Saved_Recipe(user_id=4, recipe_id=1)
 
   db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6, entry7, entry9, entry10, entry11, entry12,
-                      entry13, entry14, entry15, entry16, entry17, entry18])
+                      entry13, entry14, entry15, entry16, entry17, entry18, entry19, entry20, entry21])
   db.session.commit()
 
 create_db()
