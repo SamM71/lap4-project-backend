@@ -19,10 +19,12 @@ def create(user_id, recipe_id):
     check = Saved_Recipe.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
     if check:
       raise exceptions.BadRequest(f"as recipe already saved.")
-    new_recipe = Saved_Recipe(user_id, recipe_id)
-    db.session.add(new_recipe)
-    db.session.commit()
-    return jsonify({"new_saved_recipe": new_recipe.json}), 201
+    validRecipe = Recipe.query.filter_by(recipe_id=recipe_id).first()
+    if (validRecipe):
+      new_recipe = Saved_Recipe(user_id, recipe_id)
+      db.session.add(new_recipe)
+      db.session.commit()
+      return jsonify({"new_saved_recipe": new_recipe.json}), 201
   except exceptions.BadRequest as e:
     return jsonify({"error": str(e)})
   except:
