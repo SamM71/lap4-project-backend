@@ -21,7 +21,7 @@ def create_db():
   entry5 = User(name="Hasan", email="hasan@example.com", username="hasan1", password="jkl")
   entry6 = Recipe(user_id=1, name="recipe1", culture="a culture", ingredients=[{'ingredient': 'ingredient1', 'amount': '500g'}, {'ingredient': 'ingredient2', 'amount': '250ml'}], steps=[{'step': 'first step'}, {'step': 'second step'}], description="example recipe", img_url="cucina/food_vbd3ll")
   entry7 = Saved_Recipe(user_id=2, recipe_id=1)
-  entry9 = Message(username="charlie", text="Hello, I am a message", dialogue_id=1)
+  entry9 = Message(username="sam1", text="Hello, I am a message", dialogue_id=1)
   entry10 = Message(username="rubina1", text="Hello", dialogue_id=2)
   entry11 = Token(user_id=1, token='hbkdhcvhcsvcgsvchsvchlsl')
   entry12 = Dialogue(username="charlie", receiver="sam1", dialogue_id=1)
