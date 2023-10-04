@@ -2,6 +2,7 @@ from ..models.Recipe import Recipe
 from werkzeug import exceptions
 from flask import jsonify, request
 from .. import db
+from sqlalchemy import func
 
 def index():
   try:
@@ -58,3 +59,13 @@ def delete(id):
     return f"Recipe deleted"
   except:
     raise exceptions.InternalServerError(f"Unable to delete recipe.")
+  
+def get_last():
+  try:
+    recipe = db.session.query(func.max(Recipe.id)).all()
+    print(recipe[0][0])
+    id = int(recipe[0][0])
+    # return jsonify({"id": recipe[0][0]}), 200
+    return show(id)
+  except:
+    raise exceptions.NotFound("Recipe not found.")
