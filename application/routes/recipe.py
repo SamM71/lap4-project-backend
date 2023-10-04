@@ -1,6 +1,6 @@
 from flask import jsonify, request, Blueprint
 from application import app
-from ..controllers.recipe import index, show, create, update, delete, show_by_name
+from ..controllers.recipe import index, show, create, update, delete, show_by_name, get_last
 
 recipe_bp = Blueprint('recipe_bp', __name__)
 
@@ -24,3 +24,8 @@ def handle_recipe(id):
 def handle_recipe_by_name(name):
   if request.method == "GET":
     return show_by_name(name)
+
+@app.route("/last_recipe", methods=["GET"])
+def handle_last_recipe():
+  if request.method == "GET":
+    return get_last()
