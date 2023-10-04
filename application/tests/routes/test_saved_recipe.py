@@ -16,8 +16,8 @@ def test_create_srecipe(client):
   res = client.post('/saved/1000/1000')
   assert b"Unable to save recipe" in res.data
   ## tests route exists but doesn't increase coverage
-  func = adapter.match('/recipes', method='POST')
-  assert 'handle_recipes' in func
+  func = adapter.match('/saved/1000/1000', method='POST')
+  assert 'handle_srecipe' in func
 
 def test_delete_srecipe(client):
   res = client.delete('/saved/1000/1000')
