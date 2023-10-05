@@ -30,9 +30,8 @@ def add_saved_recipes():
   # db.session.commit()
 
 def add_messages():
-  entry1 = Message(username="charlie", text="Hello, I am a message", dialogue_id=1)
-  entry2 = Message(username="rubina1", text="Hello", dialogue_id=2)
-  db.session.add_all([entry1, entry2])
+  entry2 = Message(username="rubina1", text="Hi, I'm Rubina, nice to meet you!", dialogue_id=1)
+  db.session.add_all([entry2])
   # db.session.commit()
 
 def add_tokens():
@@ -41,13 +40,8 @@ def add_tokens():
   # db.session.commit()
 
 def add_dialogues():
-  entry1 = Dialogue(username="charlie", receiver="sam1", dialogue_id=1)
-  entry2 = Dialogue(username="charlie", receiver="rubina1", dialogue_id=2)
-  entry3 = Dialogue(username="charlie", receiver="charlie1", dialogue_id=3)
-  entry4 = Dialogue(username="charlie", receiver="ranti1", dialogue_id=4)
-  entry5 = Dialogue(username="charlie", receiver="hasan1", dialogue_id=5)
-  db.session.add_all([entry1, entry2, entry3, entry4, entry5])
-  # db.session.commit()
+  entry2 = Dialogue(username="charlie", receiver="rubina1", dialogue_id=1)
+  db.session.add(entry2)
 
 def add_posts():
   entry1 = Post(user_id=6, recipe_id=1, description="A tasty Italian dish.", story="I ate this with my family.", img_url="cucina/arrabbiata_oqdsuv")
@@ -67,7 +61,7 @@ def create_db():
   add_users()
   add_recipes()
   add_saved_recipes()
-  # add_messages()
+  add_messages()
   add_tokens()
   add_dialogues()
   add_posts()
