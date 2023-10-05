@@ -1,6 +1,6 @@
 from flask import jsonify, request, Blueprint
 from application import app
-from ..controllers.dialogue import index, create, show
+from ..controllers.dialogue import index, create, show, show_user
 
 dialogue_bp = Blueprint('dialogue_bp', __name__)
 
@@ -22,3 +22,11 @@ def handle_dialogue():
 def handle_view(id):
     if request.method == "GET":
         return show(id)
+
+
+@app.route("/dialogues/<string:username>", methods=["GET"])
+def handle_user_get(username):
+    if request.method == "GET":
+        print(f'this is the {username}')
+        return show_user(username)
+

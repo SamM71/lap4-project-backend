@@ -56,7 +56,7 @@ def add_posts():
   # db.session.commit()
 
 def add_comments():
-  entry1 = Comment(user_id=4, post_id=1, text="nice post!")
+  entry1 = Comment(user_id=4, username='exampleUser', post_id=1, text="nice post!")
   db.session.add_all([entry1])
   # db.session.commit()
   
@@ -67,7 +67,7 @@ def create_db():
   add_users()
   add_recipes()
   add_saved_recipes()
-  add_messages()
+  # add_messages()
   add_tokens()
   add_dialogues()
   add_posts()
