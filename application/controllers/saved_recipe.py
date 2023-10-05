@@ -15,11 +15,11 @@ def index(user_id):
 
 def create(user_id, recipe_id):
   try:
-    # user_id, recipe_id = request.json.values()
     check = Saved_Recipe.query.filter_by(user_id=user_id, recipe_id=recipe_id).first()
     if check:
       raise exceptions.BadRequest(f"as recipe already saved.")
-    validRecipe = Recipe.query.filter_by(recipe_id=recipe_id).first()
+    
+    validRecipe = Recipe.query.filter_by(id=recipe_id).all()
     if (validRecipe):
       new_recipe = Saved_Recipe(user_id, recipe_id)
       db.session.add(new_recipe)
